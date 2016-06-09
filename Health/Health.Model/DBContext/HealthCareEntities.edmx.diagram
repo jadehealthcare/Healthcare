@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04dc948c49ac4cd6bb7bd07c29cb7022" Name="Diagram1">
+        <EntityTypeShape EntityType="HealthCareModel.tblHospitalDetail" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareModel.tblHospitalRegister" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareModel.tblReview" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareModel.tblUsageDetail" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthCareModel.tblUserRegister" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="HealthCareModel.FK_tblHospitalDetails_tblHospitalRegister" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthCareModel.FK_tblReviews_tblHospitalRegister" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthCareModel.FK_tblUsageDetails_tblHospitalRegister" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthCareModel.FK_tblReviews_tblUserRegister" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthCareModel.FK_tblUsageDetails_tblUserRegister" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

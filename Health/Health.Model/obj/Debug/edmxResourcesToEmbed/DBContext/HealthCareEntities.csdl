@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HealthCareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblHospitalDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ICU" Type="Boolean" Nullable="false" />
+    <Property Name="Ambulance" Type="Boolean" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblHospitalRegister" Relationship="Self.FK_tblHospitalDetails_tblHospitalRegister" FromRole="tblHospitalDetails" ToRole="tblHospitalRegister" />
+  </EntityType>
+  <EntityType Name="tblHospitalRegister">
+    <Key>
+      <PropertyRef Name="HospitalID" />
+    </Key>
+    <Property Name="HospitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HospitalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PinCode" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Phone" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Approval" Type="Boolean" Nullable="false" />
+    <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="latitude" Type="Decimal" Precision="18" Scale="10" />
+    <Property Name="longitude" Type="Decimal" Precision="18" Scale="10" />
+    <NavigationProperty Name="tblHospitalDetails" Relationship="Self.FK_tblHospitalDetails_tblHospitalRegister" FromRole="tblHospitalRegister" ToRole="tblHospitalDetails" />
+    <NavigationProperty Name="tblReviews" Relationship="Self.FK_tblReviews_tblHospitalRegister" FromRole="tblHospitalRegister" ToRole="tblReviews" />
+    <NavigationProperty Name="tblUsageDetails" Relationship="Self.FK_tblUsageDetails_tblHospitalRegister" FromRole="tblHospitalRegister" ToRole="tblUsageDetails" />
+  </EntityType>
+  <EntityType Name="tblReview">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <Property Name="Review" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblHospitalRegister" Relationship="Self.FK_tblReviews_tblHospitalRegister" FromRole="tblReviews" ToRole="tblHospitalRegister" />
+    <NavigationProperty Name="tblUserRegister" Relationship="Self.FK_tblReviews_tblUserRegister" FromRole="tblReviews" ToRole="tblUserRegister" />
+  </EntityType>
+  <EntityType Name="tblUsageDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblHospitalRegister" Relationship="Self.FK_tblUsageDetails_tblHospitalRegister" FromRole="tblUsageDetails" ToRole="tblHospitalRegister" />
+    <NavigationProperty Name="tblUserRegister" Relationship="Self.FK_tblUsageDetails_tblUserRegister" FromRole="tblUsageDetails" ToRole="tblUserRegister" />
+  </EntityType>
+  <EntityType Name="tblUserRegister">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Points" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblReviews" Relationship="Self.FK_tblReviews_tblUserRegister" FromRole="tblUserRegister" ToRole="tblReviews" />
+    <NavigationProperty Name="tblUsageDetails" Relationship="Self.FK_tblUsageDetails_tblUserRegister" FromRole="tblUserRegister" ToRole="tblUsageDetails" />
+  </EntityType>
+  <Association Name="FK_tblHospitalDetails_tblHospitalRegister">
+    <End Role="tblHospitalRegister" Type="Self.tblHospitalRegister" Multiplicity="1" />
+    <End Role="tblHospitalDetails" Type="Self.tblHospitalDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHospitalRegister">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="tblHospitalDetails">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblReviews_tblHospitalRegister">
+    <End Role="tblHospitalRegister" Type="Self.tblHospitalRegister" Multiplicity="1" />
+    <End Role="tblReviews" Type="Self.tblReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHospitalRegister">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="tblReviews">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsageDetails_tblHospitalRegister">
+    <End Role="tblHospitalRegister" Type="Self.tblHospitalRegister" Multiplicity="1" />
+    <End Role="tblUsageDetails" Type="Self.tblUsageDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHospitalRegister">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="tblUsageDetails">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblReviews_tblUserRegister">
+    <End Role="tblUserRegister" Type="Self.tblUserRegister" Multiplicity="1" />
+    <End Role="tblReviews" Type="Self.tblReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserRegister">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblReviews">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsageDetails_tblUserRegister">
+    <End Role="tblUserRegister" Type="Self.tblUserRegister" Multiplicity="1" />
+    <End Role="tblUsageDetails" Type="Self.tblUsageDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserRegister">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblUsageDetails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HealthCareEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblHospitalDetails" EntityType="Self.tblHospitalDetail" />
+    <EntitySet Name="tblHospitalRegisters" EntityType="Self.tblHospitalRegister" />
+    <EntitySet Name="tblReviews" EntityType="Self.tblReview" />
+    <EntitySet Name="tblUsageDetails" EntityType="Self.tblUsageDetail" />
+    <EntitySet Name="tblUserRegisters" EntityType="Self.tblUserRegister" />
+    <AssociationSet Name="FK_tblHospitalDetails_tblHospitalRegister" Association="Self.FK_tblHospitalDetails_tblHospitalRegister">
+      <End Role="tblHospitalRegister" EntitySet="tblHospitalRegisters" />
+      <End Role="tblHospitalDetails" EntitySet="tblHospitalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblReviews_tblHospitalRegister" Association="Self.FK_tblReviews_tblHospitalRegister">
+      <End Role="tblHospitalRegister" EntitySet="tblHospitalRegisters" />
+      <End Role="tblReviews" EntitySet="tblReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsageDetails_tblHospitalRegister" Association="Self.FK_tblUsageDetails_tblHospitalRegister">
+      <End Role="tblHospitalRegister" EntitySet="tblHospitalRegisters" />
+      <End Role="tblUsageDetails" EntitySet="tblUsageDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblReviews_tblUserRegister" Association="Self.FK_tblReviews_tblUserRegister">
+      <End Role="tblUserRegister" EntitySet="tblUserRegisters" />
+      <End Role="tblReviews" EntitySet="tblReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsageDetails_tblUserRegister" Association="Self.FK_tblUsageDetails_tblUserRegister">
+      <End Role="tblUserRegister" EntitySet="tblUserRegisters" />
+      <End Role="tblUsageDetails" EntitySet="tblUsageDetails" />
+    </AssociationSet>
+    <FunctionImport Name="sp_getHospitalData" ReturnType="Collection(HealthCareModel.sp_getHospitalData_Result)" />
+    <FunctionImport Name="sp_HosptialRegister">
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="PinCode" Mode="In" Type="Decimal" />
+      <Parameter Name="Phone" Mode="In" Type="Decimal" />
+      <Parameter Name="Mobile" Mode="In" Type="Decimal" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="approval" Mode="In" Type="Boolean" />
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="lat" Mode="In" Type="Decimal" />
+      <Parameter Name="long" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LogIn">
+      <Parameter Name="is_match" Mode="InOut" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LoginHospital">
+      <Parameter Name="is_match" Mode="InOut" Type="Int32" />
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LoginUser">
+      <Parameter Name="is_match" Mode="InOut" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UserRegister">
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+      <Parameter Name="Firstname" Mode="In" Type="String" />
+      <Parameter Name="Lastname" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="String" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="mobile" Mode="In" Type="Decimal" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="points" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_getHospitalData_Result">
+    <Property Type="Int32" Name="HospitalID" Nullable="false" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="PinCode" Nullable="false" Precision="6" Scale="0" />
+    <Property Type="Decimal" Name="Phone" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="Decimal" Name="Mobile" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Approval" Nullable="false" />
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="10" />
+    <Property Type="Decimal" Name="latitude" Nullable="true" Precision="18" Scale="10" />
+    <Property Type="Decimal" Name="longitude" Nullable="true" Precision="18" Scale="10" />
+  </ComplexType>
+</Schema>

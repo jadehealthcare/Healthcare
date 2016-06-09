@@ -1,0 +1,164 @@
+﻿
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="../CSS/Site.css" rel="stylesheet" />
+   
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="../Scripts/angular.min.js"></script>
+
+    <script src="../Scripts/angular-material/angular-material.min.js"></script>
+    <script src="../Scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="../Scripts/angular-aria/angular-aria.min.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+    <link href="../Content/angular-material.min.css" rel="stylesheet" />
+    <script src="Scripts/AngularUI/ui-router.min.js"></script>
+    <script src="Scripts/angular-google-maps.min.js"></script>
+     <script src="Scripts/event.min.js"></script>
+    <script src="Scripts/ng-cordova.min.js"></script>
+
+
+
+    <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS2FgDDZIjNeAK0Zr3kOITHA9dQizNs9w&libraries=places" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <!--<script src="../JS/dialog.js"></script>-->
+    
+    <script src="../JS/routeController.js"></script>
+    <script src="../js/mapscript.js"></script>
+
+    <script src="JS/EmailController.js"></script>
+    <!--<script src="script.js"></script>-->
+</head>
+<body ng-app="myApp" >
+    
+        
+            <div class="container  max-width-900 padding-bottom-5 padding-top-5">
+                <div class="row ">
+                    <form ng-controller="myCtrl">
+
+                        <ng-form class="form-inline pull-right" role="form">
+                            <div class="form-group">
+                                <label for="username"> User Name:</label>
+                                <input type="text" class="form-control" id="username" ng-model="form.username">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd" ng-model="form.password">
+                            </div>
+
+                            <button class="form-control" ng-click="myForm.loginuser()">Login</button>
+
+                            <span title="Forgot Password?">?</span>
+                           <!-- <button class="form-control" ng-click="myForm.redirect()">Re</button>-->
+
+                        </ng-form>
+                    </form>
+                </div>
+                <!-- Hosptial Login-->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hospital Login</button>
+
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Login For Hosptial</h4>
+                            </div>
+                            <div class="modal-body">
+                               <form ng-controller="myCtrl">
+
+                                    <ng-form class="form-inline pull-right" role="form">
+                                        <div class="form-group">
+                                            <label for="username">ID:</label>
+                                            <input type="text" class="form-control" id="id" ng-model="form.id">
+                                        </div>
+                                                                              <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" class="form-control" id="pwd" ng-model="form.password">
+                                        </div>
+
+                                        <button class="form-control" ng-click="myForm.loginhospital()">Login</button>
+
+                                        <span title="Forgot Password?">?</span>
+                                        
+
+                                    </ng-form>
+                                </form> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+       
+
+    <hr />
+
+    <div class="container max-width-900 padding-bottom-5 padding-top-15">
+        <div class="row">
+           
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 color-4dd2ff">
+                HealthCare
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                      
+                          
+                        <a href="/partials/Home.html"><li class="btndiv">Home</li></a>
+                           <li class="btndiv">Home</li>
+                           <li class="btndiv">Home</li>
+                           <li class="btndiv">Home</li>
+                        
+                     </ul>
+                           
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div id="main">
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <!--<div ng-view></div>-->
+        <div ui-view></div>
+    </div>
+
+    <hr />
+    <div class="container">
+        <div class="row">
+            <p>&copy; @DateTime.Now.Year - My Application</p>
+        </div>
+    </div>
+
+</body>
+</html>
