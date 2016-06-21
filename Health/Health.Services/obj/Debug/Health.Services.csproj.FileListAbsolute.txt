@@ -16,3 +16,11 @@ D:\Health\Health.Services\obj\Debug\Health.Services.csprojResolveAssemblyReferen
 D:\Health\Health.Services\obj\Debug\Health.Services.dll
 D:\Health\Health.Services\obj\Debug\Health.Services.pdb
 D:\Health\Health.Services\bin\Debug\EntityFramework.dll
+D:\AngularJS App\Health\Health.Services\bin\Debug\Health.Services.dll
+D:\AngularJS App\Health\Health.Services\bin\Debug\Health.Services.pdb
+D:\AngularJS App\Health\Health.Services\bin\Debug\Health.Model.dll
+D:\AngularJS App\Health\Health.Services\bin\Debug\Health.Model.pdb
+D:\AngularJS App\Health\Health.Services\bin\Debug\EntityFramework.xml
+D:\AngularJS App\Health\Health.Services\obj\Debug\Health.Services.csprojResolveAssemblyReference.cache
+D:\AngularJS App\Health\Health.Services\obj\Debug\Health.Services.dll
+D:\AngularJS App\Health\Health.Services\obj\Debug\Health.Services.pdb

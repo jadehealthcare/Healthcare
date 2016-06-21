@@ -7,7 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Security.Claims;
+using System.Web;
 using System.Web.Http;
+using System.Web.Security;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Infrastructure;
+using Microsoft.Owin.Security.Cookies;
+using Health.Model.DBContext;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Health.Controllers
 {
@@ -18,8 +27,10 @@ namespace Health.Controllers
         Hospital hospitalOperations = new Hospital();
         User userOperations = new User();
 
-        [System.Web.Http.Route("HospitalRegister")]
-        [System.Web.Http.HttpPost]
+       
+
+        [Route("HospitalRegister")]
+        [HttpPost]
         public HttpResponseMessage HospitalRegister(HospitalRegister hospitalData)
         {
             // GetData g = new GetData();
@@ -34,8 +45,8 @@ namespace Health.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "Unsuccessfully");
         }
 
-        [System.Web.Http.Route("UserRegister")]
-        [System.Web.Http.HttpPost]
+        [Route("UserRegister")]
+        [HttpPost]
         public HttpResponseMessage UserRegister(UserRegistration UserData)
         {
             // GetData g = new GetData();
@@ -49,53 +60,41 @@ namespace Health.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, "Unsuccessfully");
         }
 
-        [System.Web.Http.Route("UserLogin")]
-        [System.Web.Http.HttpPost]
+        [AllowAnonymous]
+        [Route("UserLogin")]
+        [HttpPost]
         public HttpResponseMessage UserLogin(UserRegistration UserData)
         {
-            //var authenticated = false;
-            //if (authenticated || (UserData.Email == "a" && UserData.Password == "a"))
-            //{
 
-            //    var identity = new ClaimsIdentity(Startup.OAuthOptions.AuthenticationType);
-            //    identity.AddClaim(new Claim(ClaimTypes.Name, UserData.Email));
-            //    identity.AddClaim(new Claim("Password", UserData.Password));
+            //HealthCareEntities healthCareEntities = new HealthCareEntities();
+            OAuthGrantResourceOwnerCredentialsContext context=null;
+            
 
-            //    AuthenticationTicket ticket = new AuthenticationTicket(identity, new AuthenticationProperties());
-            //    var currentUtc = new SystemClock().UtcNow;
-            //    ticket.Properties.IssuedUtc = currentUtc;
-            //    ticket.Properties.ExpiresUtc = currentUtc.Add(TimeSpan.FromMinutes(30));
-
-            //    var token = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
-            //    var response = new HttpResponseMessage(HttpStatusCode.OK)
-            //    {
-            //        Content = new ObjectContent<object>(new
-            //        {
-            //            UserName = UserData.Email,
-            //            AccessToken = token
-            //        }, Configuration.Formatters.JsonFormatter)
-            //    };
-
-            //    FormsAuthentication.SetAuthCookie(UserData.Email, true);
-
-            //    HttpContext.Current.Session["UserEmail"] = UserData.Email;
-
-            //    return response;
-
-
-            //    //return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            //}
             int returnaVal = userOperations.LoginUser(UserData);
 
+
+
             if (returnaVal == 1)
+            {
+                IdentityUser user = new IdentityUser()
+                {
+                    UserName = UserData.Email
+                };
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim("sub", UserData.Email));
+                identity.AddClaim(new Claim("role", "user"));
+
+                context.Validated(identity);
                 return Request.CreateResponse(HttpStatusCode.OK, "Login successfully");
+                    
+            }
             else
                 return Request.CreateResponse(HttpStatusCode.OK, "Login Unsuccessfully");
         }
 
 
-        [System.Web.Http.Route("HospitalLogin")]
-        [System.Web.Http.HttpPost]
+        [Route("HospitalLogin")]
+        [HttpPost]
         public HttpResponseMessage HospitalLogin(HospitalRegister hospitalData)
         {
 
@@ -165,7 +164,7 @@ namespace Health.Controllers
 
             SmtpClient smtp = new SmtpClient()
             {
-                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
                 Host = "smtp.gmail.com",
                 Port = 587,
                 UseDefaultCredentials = false,

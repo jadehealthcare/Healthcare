@@ -17,3 +17,13 @@ D:\Health\Health.Model\bin\Debug\EntityFramework.xml
 D:\Health\Health.Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\Health\Health.Model\obj\Debug\Health.Model.dll
 D:\Health\Health.Model\obj\Debug\Health.Model.pdb
+D:\AngularJS App\Health\Health.Model\bin\Debug\Health.Model.dll.config
+D:\AngularJS App\Health\Health.Model\bin\Debug\Health.Model.dll
+D:\AngularJS App\Health\Health.Model\bin\Debug\Health.Model.pdb
+D:\AngularJS App\Health\Health.Model\bin\Debug\EntityFramework.dll
+D:\AngularJS App\Health\Health.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\AngularJS App\Health\Health.Model\bin\Debug\EntityFramework.xml
+D:\AngularJS App\Health\Health.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\AngularJS App\Health\Health.Model\obj\Debug\Health.Model.csprojResolveAssemblyReference.cache
+D:\AngularJS App\Health\Health.Model\obj\Debug\Health.Model.dll
+D:\AngularJS App\Health\Health.Model\obj\Debug\Health.Model.pdb
